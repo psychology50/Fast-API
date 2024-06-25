@@ -1,21 +1,18 @@
+import uvicorn
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi import APIRouter
 from fastapi import status
 from typing import List, Dict, Any
 
+from apis.user.user_api import user_req
 from config.database_config import DatabaseConfig
 from models.user import User
 
 app = FastAPI()
 
-engine = DatabaseConfig()
-session = engine.create_session()
-
-@app.get("/")
-def printHello():
-    user = session.query(User).all()
-    return user
+app.include_router(user_req)
 
 @app.get("/json")
 def printJson():
@@ -50,3 +47,6 @@ async def asyncFunction(
       result = await asyncFunction(user_info)
       
       return result
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
