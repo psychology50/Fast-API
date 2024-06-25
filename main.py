@@ -4,11 +4,18 @@ from fastapi import APIRouter
 from fastapi import status
 from typing import List, Dict, Any
 
+from config.database_config import DatabaseConfig
+from models.user import User
+
 app = FastAPI()
+
+engine = DatabaseConfig()
+session = engine.create_session()
 
 @app.get("/")
 def printHello():
-	return "Hello World"
+    user = session.query(User).all()
+    return user
 
 @app.get("/json")
 def printJson():
