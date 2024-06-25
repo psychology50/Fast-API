@@ -11,7 +11,7 @@ session = engine.create_session()
 user_req = APIRouter(prefix='/users')
 
 @user_req.get(path = "", tags=['user'], status_code=status.HTTP_200_OK, response_model=List[UserInfo])
-def printHello():
+async def getUsers() -> List[UserInfo]:
     users = session.query(User).all()
     
     user_dto = []
