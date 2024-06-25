@@ -8,6 +8,7 @@ class User(Base):
 
     id = Column(BIGINT, primary_key=True, autoincrement=True)
     username = Column(VARCHAR, nullable=False)
+    name = Column(VARCHAR, nullable=False)
     password = Column(VARCHAR, nullable=True)
     password_updated_at = Column(DATETIME, nullable=True)
     profile_image_url = Column(VARCHAR, nullable=True)
