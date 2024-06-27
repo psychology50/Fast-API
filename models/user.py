@@ -1,4 +1,4 @@
-from sqlalchemy import Column, TEXT, INT, BIGINT, DATETIME, BOOLEAN, VARCHAR, CHAR
+from sqlalchemy import Column, BIGINT, DATETIME, BOOLEAN, VARCHAR, CHAR
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
